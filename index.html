@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000">
+    <title>The silent Joker</title>
+    <!-- links -->
+    <link
+        href='https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
+        rel='stylesheet' />
+    <link rel="stylesheet" href="jokes_api.css">
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="j2.png">
+</head>
+
+<body>
+    <div class="container" id="container" aria-label="Hello">
+        <div class="joke" id="joke_div">
+        </div>
+        <div class="next_btn">
+            <button class="carry_on" onclick="telljoke()">Tell a joke</button>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    function telljoke() {
+        //use to fecth the data from the api
+        fetch('https://icanhazdadjoke.com/', {
+            method: "GET",
+            headers: {
+                "Accept": "application/json", //here the joke api website uses the access header to send the data to requester
+            }
+        })
+            .then(response => response.json())
+            .then(json => document.getElementById("joke_div").innerHTML = json.joke)
+            .catch(err => console.log(err))
+    }
+
+    if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker
+      .register("/serviceWorker.js")
+      .then(res => console.log("service worker registered"))
+      .catch(err => console.log("service worker not registered", err))
+  })
+}
+</script>

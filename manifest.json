@@ -1,0 +1,23 @@
+{
+    "name": "Joke app",
+    "short_name": "Jokeapp",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#000",
+    "orientation": "portrait-primary",
+    "icons":[
+        {
+            "src":"j.png",
+            "type":"image/png",
+            "sizes":"512x512",
+            "purpose":"any"
+        },
+        {
+            "src":"j2.png",
+            "type":"image/png",
+            "sizes":"180x180",
+            "purpose":"any"
+        }
+    ]
+  }
